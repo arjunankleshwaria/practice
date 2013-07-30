@@ -39,41 +39,59 @@ void print_array(int array[10])
 
 void bubble_sort(int a[])
 {
-	int i, j;
+	int i, j, temp;
 	int n = 10; // array size
+	
 	for(i = 0; i < n - 1; i++)
 		for(j = i + 1; j < n; j++)
 			if(a[i] > a[j])
 			{
-				int temp = a[i];
+				temp = a[i];
 				a[i] = a[j];
 				a[j] = temp;
 			}
+	
 	printf("after bubble sort: ");
 	print_array(a);
 }
 
 void insertion_sort(int b[])
 {
-	int i, j;
+	int i, j, temp;
 	int n = 10; // array size
+	
 	for(i = 0; i < n - 1; i++)
 	{
 		j = i + 1;
 		while((b[j - 1] > b[j]) && (j > 0))
 		{
-			int temp = b[j - 1];
+			temp = b[j - 1];
 			b[j - 1] = b[j];
 			b[j] = temp;
 			j--;
 		}
 	}
+	
 	printf("after insertion sort: ");
 	print_array(b);
 }
 
 void selection_sort(int c[])
 {
+	int i, j, temp;
+	int n = 10; // array size
+	int *s; // pointer to selected element
+	
+	for(i = 0; i < n - 1; i++)
+	{
+		s = &c[i];
+		for(j = i + 1; j < n; j++)
+			if(*s > c[j])
+				s = &c[j];
+		temp = *s;
+		*s = c[i];
+		c[i] = temp;
+	}
 
 	printf("after selection sort: ");
 	print_array(c);
