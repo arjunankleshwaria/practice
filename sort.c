@@ -1,30 +1,33 @@
 #include<stdio.h>
 
 void print_array(int array[]);
-void bubble_sort(int a[]);
+void some_sort(int a[]);
 void insertion_sort(int b[]);
 void selection_sort(int c[]);
 void merge_sort(int d[]);
 void heap_sort(int e[]);
 void quick_sort(int f[]);
+void bubble_sort(int g[]);
 
 int main()
 {
-	int a[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for bubble sort
+	int a[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for some sort
 	int b[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for insertion sort
 	int c[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for selection sort
 	int d[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for merge sort
 	int e[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for heap sort
 	int f[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for quick sort
+	int g[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for bubble sort
 
 	printf("\noriginal array: ");
 	print_array(a);
-	bubble_sort(a);
+	some_sort(a);
 	insertion_sort(b);
 	selection_sort(c);
 	merge_sort(d);
 	heap_sort(e);
 	quick_sort(f);
+	bubble_sort(g);
 	printf("\n");
 	return 0;
 }
@@ -37,7 +40,7 @@ void print_array(int array[10])
 	printf("\n");
 }
 
-void bubble_sort(int a[])
+void some_sort(int a[])
 {
 	int i, j, temp;
 	int n = 10; // array size
@@ -51,7 +54,7 @@ void bubble_sort(int a[])
 				a[j] = temp;
 			}
 	
-	printf("after bubble sort: ");
+	printf("after some sort: ");
 	print_array(a);
 }
 
@@ -80,17 +83,20 @@ void selection_sort(int c[])
 {
 	int i, j, temp;
 	int n = 10; // array size
-	int *s; // pointer to selected element
+	int index_of_min; // selected (minimum) element
 	
 	for(i = 0; i < n - 1; i++)
 	{
-		s = &c[i];
+		index_of_min = i;
 		for(j = i + 1; j < n; j++)
-			if(*s > c[j])
-				s = &c[j];
-		temp = *s;
-		*s = c[i];
-		c[i] = temp;
+			if(c[index_of_min] > c[j])
+				index_of_min = j;
+		if(c[index_of_min] != c[i])
+		{
+			temp = c[index_of_min];
+			c[index_of_min] = c[i];
+			c[i] = temp;
+		}
 	}
 
 	printf("after selection sort: ");
@@ -116,4 +122,22 @@ void quick_sort(int f[])
 
 	printf("after quick sort: ");
 	print_array(f);
+}
+
+void bubble_sort(int g[])
+{
+	int i, j, temp;
+	int n = 10; // array size
+	
+	for(i = 0; i < n - 1; i++)
+		for(j = 0; j < n - 1 - i; j++)
+			if(g[j] > g[j + 1])
+			{
+				temp = g[j + 1];
+				g[j + 1] = g[j];
+				g[j] = temp;
+			}
+	
+	printf("after bubble sort: ");
+	print_array(g);
 }
