@@ -3,33 +3,36 @@
 #include<stdio.h>
 
 void print_array(int array[]);
-void some_sort(int a[]);
+void exchange_sort(int a[]);
 void insertion_sort(int b[]);
 void selection_sort(int c[]);
 void merge_sort(int d[]);
 void heap_sort(int e[]);
 void quick_sort(int f[]);
 void bubble_sort(int g[]);
+void shell_sort(int h[]);
 
 int main()
 {
-	int a[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for some sort
+	int a[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for exchange sort
 	int b[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for insertion sort
 	int c[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for selection sort
 	int d[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for merge sort
 	int e[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for heap sort
 	int f[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for quick sort
 	int g[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for bubble sort
+	int h[10] = {7, 4, 2, 8, 1, 0, 6, 5, 9, 3}; // for shell sort
 
 	printf("\noriginal array: ");
 	print_array(a);
-	some_sort(a);
+	exchange_sort(a);
 	insertion_sort(b);
 	selection_sort(c);
 	merge_sort(d);
 	heap_sort(e);
 	quick_sort(f);
 	bubble_sort(g);
+	shell_sort(h);
 	printf("\n");
 	return 0;
 }
@@ -42,7 +45,7 @@ void print_array(int array[10])
 	printf("\n");
 }
 
-void some_sort(int a[])
+void exchange_sort(int a[])
 {
 	int i, j, temp;
 	int n = 10; // array size
@@ -56,7 +59,7 @@ void some_sort(int a[])
 				a[j] = temp;
 			}
 	
-	printf("after some sort: ");
+	printf("after exchange sort: ");
 	print_array(a);
 }
 
@@ -142,4 +145,11 @@ void bubble_sort(int g[])
 	
 	printf("after bubble sort: ");
 	print_array(g);
+}
+
+void shell_sort(int h[])
+{
+	
+	printf("after shell sort: ");
+	print_array(h);
 }
