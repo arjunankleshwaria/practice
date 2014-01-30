@@ -6,7 +6,8 @@ void print_array(int array[]);
 void exchange_sort(int a[]);
 void insertion_sort(int b[]);
 void selection_sort(int c[]);
-void merge_sort(int d[]);
+void merge_sort(int d[], int low, int high);
+void merge(int arr[], int low, int mid, int high);
 void heap_sort(int e[]);
 void quick_sort(int f[]);
 void bubble_sort(int g[]);
@@ -28,7 +29,9 @@ int main()
 	exchange_sort(a);
 	insertion_sort(b);
 	selection_sort(c);
-	merge_sort(d);
+	merge_sort(d, 0, 9);
+	printf("after merge sort: ");
+	print_array(d);
 	heap_sort(e);
 	quick_sort(f);
 	bubble_sort(g);
@@ -108,11 +111,43 @@ void selection_sort(int c[])
 	print_array(c);
 }
 
-void merge_sort(int d[])
+void merge_sort(int d[], int low, int high)
 {
+	if(low < high)
+	{
+		int mid = (low + high) / 2;
+		merge_sort(d, low, mid);
+		merge_sort(d, mid + 1, high);
+		merge(d, low, mid, high);
+	}
+}
 
-	printf("after merge sort: ");
-	print_array(d);
+void merge(int arr[], int low, int mid, int high)
+{
+	int left = low;
+	int right = mid + 1;
+	int temp[high - low + 1];
+	int k = 0;
+
+	while(left <= mid && right <= high)
+	{
+		if(arr[left] < arr[right])
+			temp[k++] = arr[left++];
+		else
+			temp[k++] = arr[right++];
+	}
+
+	while(left <= mid)
+		temp[k++] = arr[left++];
+	while(right <= high)
+		temp[k++] = arr[right++];
+
+	int m = 0;
+	while(m < (high - low + 1))
+	{
+		arr[low + m] = temp[m];
+		m++;
+	}
 }
 
 void heap_sort(int e[])
@@ -133,7 +168,7 @@ void bubble_sort(int g[])
 {
 	int i, j, temp;
 	int n = 10; // array size
-	
+
 	for(i = 0; i < n - 1; i++)
 		for(j = 0; j < n - 1 - i; j++)
 			if(g[j] > g[j + 1])
