@@ -9,9 +9,11 @@ void selection_sort(int c[]);
 void merge_sort(int d[], int low, int high);
 void merge(int arr[], int low, int mid, int high);
 void heap_sort(int e[]);
-void quick_sort(int f[]);
+void quick_sort(int f[], int low, int high);
+int partition(int arr[], int low, int high);
 void bubble_sort(int g[]);
 void shell_sort(int h[]);
+void swap(int *a, int *b);
 
 int main()
 {
@@ -33,7 +35,9 @@ int main()
 	printf("after merge sort: ");
 	print_array(d);
 	heap_sort(e);
-	quick_sort(f);
+	quick_sort(f, 0, 9);
+	printf("after quick sort: ");
+	print_array(f);
 	bubble_sort(g);
 	shell_sort(h);
 	printf("\n");
@@ -48,11 +52,18 @@ void print_array(int array[10])
 	printf("\n");
 }
 
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 void exchange_sort(int a[])
 {
 	int i, j, temp;
 	int n = 10; // array size
-	
+
 	for(i = 0; i < n - 1; i++)
 		for(j = i + 1; j < n; j++)
 			if(a[i] > a[j])
@@ -61,7 +72,7 @@ void exchange_sort(int a[])
 				a[i] = a[j];
 				a[j] = temp;
 			}
-	
+
 	printf("after exchange sort: ");
 	print_array(a);
 }
@@ -70,7 +81,7 @@ void insertion_sort(int b[])
 {
 	int i, j, temp;
 	int n = 10; // array size
-	
+
 	for(i = 0; i < n - 1; i++)
 	{
 		j = i + 1;
@@ -82,7 +93,7 @@ void insertion_sort(int b[])
 			j--;
 		}
 	}
-	
+
 	printf("after insertion sort: ");
 	print_array(b);
 }
@@ -92,7 +103,7 @@ void selection_sort(int c[])
 	int i, j, temp;
 	int n = 10; // array size
 	int index_of_min; // selected (minimum) element
-	
+
 	for(i = 0; i < n - 1; i++)
 	{
 		index_of_min = i;
@@ -157,11 +168,31 @@ void heap_sort(int e[])
 	print_array(e);
 }
 
-void quick_sort(int f[])
+void quick_sort(int f[], int low, int high)
 {
+	if(low < high)
+	{
+		int p = partition(f, low, high);
+		quick_sort(f, low, p - 1);
+		quick_sort(f, p + 1, high);
+	}
+}
 
-	printf("after quick sort: ");
-	print_array(f);
+int partition(int arr[], int low, int high)
+{
+	int pivot = arr[high]; // pivot is always last element
+	int idx = low; // at end of partition, it is index of final position of pivot
+	int j;
+	for(j = low; j < high; j++)
+	{
+		if(arr[j] <= pivot)
+		{
+			swap(&arr[idx], &arr[j]);
+			idx++;
+		}
+	}
+	swap(&arr[idx], &arr[high]);
+	return idx;
 }
 
 void bubble_sort(int g[])
@@ -177,14 +208,14 @@ void bubble_sort(int g[])
 				g[j + 1] = g[j];
 				g[j] = temp;
 			}
-	
+
 	printf("after bubble sort: ");
 	print_array(g);
 }
 
 void shell_sort(int h[])
 {
-	
+
 	printf("after shell sort: ");
 	print_array(h);
 }
