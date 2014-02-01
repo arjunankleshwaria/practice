@@ -17,6 +17,8 @@ mynode *temp;
 void add(int value);
 void delete(int value);
 void print();
+mynode* mergeSort(mynode *root);
+merge();
 
 int main()
 {
@@ -45,8 +47,26 @@ int main()
 	delete(8);
 	delete(6);
 	add(9);
+	add(84);
+	add(18);
+	add(89);
+	add(68);
+	add(48);
+	add(358);
+	add(998);
+	add(9238);
+	add(48);
+	add(55);
+	add(72);
+	add(12);
+	add(21);
 	print();
 	printf("\n");
+
+	mynode *new_head = head;
+	new_head = mergeSort(newHead);
+	print();
+
 	return 0;
 }
 
