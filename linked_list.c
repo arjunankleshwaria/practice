@@ -17,8 +17,44 @@ mynode *temp;
 void add(int value);
 void delete(int value);
 void print();
-mynode* mergeSort(mynode *root);
-merge();
+
+void reverse(mynode **head)
+{
+	if(*head == NULL)
+		return;
+
+	mynode *curr = *head;
+	mynode *prev = NULL;
+	mynode *next = NULL;
+
+	while(curr != NULL)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	*head = prev;
+}
+
+void recursive_reverse(mynode **head)
+{
+	if(*head == NULL)
+		return;
+
+	mynode *first = *head;
+	mynode *rest = first->next;
+
+	if(rest == NULL)
+		return;
+	else
+	{
+		recursive_reverse(&rest);
+		first->next->next = first;
+		first->next = NULL;
+		*head = rest;
+	}
+}
 
 int main()
 {
@@ -63,10 +99,17 @@ int main()
 	print();
 	printf("\n");
 
-	mynode *new_head = head;
-	new_head = mergeSort(newHead);
+	print();
+	printf("\n");
+	reverse(&head);
 	print();
 
+	printf("\n");
+
+	recursive_reverse(&head);
+	print();
+
+	printf("\n");
 	return 0;
 }
 
