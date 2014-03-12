@@ -201,13 +201,19 @@ void bubble_sort(int g[])
 	int n = 10; // array size
 
 	for(i = 0; i < n - 1; i++)
+	{
+		int flag = 0;
 		for(j = 0; j < n - 1 - i; j++)
 			if(g[j] > g[j + 1])
 			{
 				temp = g[j + 1];
 				g[j + 1] = g[j];
 				g[j] = temp;
+				flag = 1;
 			}
+		if(flag == 0)
+			break;
+	}
 
 	printf("after bubble sort: ");
 	print_array(g);
