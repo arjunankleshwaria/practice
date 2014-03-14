@@ -1,0 +1,25 @@
+Hello
+how have you been?
+great!
+I am doing good
+what is the time
+
+9:00 pm
+
+Hello
+great
+hell
+america
+"america"
+
+
+ it is cloudy!
+
+$500
+& is used to obtain address of a variable
+* is used to dereference a pointer
+
+ #mobile number?
+
+<html>
+<html>
